@@ -1,10 +1,40 @@
+function notTriangle(sideA, sideB, sideC) {
+  if ((sideA + sideB <= sideC) || (sideB + sideC <= sideC) || (sideA + sideB <= sideB)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
+function equilateralTriangle(sideA, sideB, sideC) {
+  if (sideA === sideB && sideB === sideC) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
+function isoscelesTriangle(sideA, sideB, sideC) {
+  if (sideA === sideB) || (sideB === sideC) || (sideA === sideC) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function scaleneTriangle(sideA, sideB, sideC) {
+  if (sideA !== sideB && sideA !== sideC && sideB !== sideC) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+$(".equal").hide();
+$(".isos").hide();
+$(".scale").hide();
+$(".not-triangle").hide();
 $(document).ready(function() {
-  $(".equal").hide();
-  $(".isos").hide();
-  $(".scale").hide();
-  $(".not-triangle").hide();
 
   $("#triangleform").submit(function(event) {
     event.preventDefault();
@@ -13,27 +43,15 @@ $(document).ready(function() {
     var sideB = $("#b").val();
     var sideC = $("#c").val();
 
-
-    if ((sideA + sideB) >= sideC) {
-      $(".random").show();
-    } else if ((sideA + sideC) >= sideB) {
-        $(".random").show();
-    } else if ((sideB + sideC) >= sideA) {
-      if (sideA === sideB === sideC) {
-        $(".equal").show();
-      } else if (sideA === sideB) {
-        $(".isos").show();
-      } else if (sideB === sideC) {
-        $(".isos").show();
-      } else if (sideA === sideC) {
-        $(".isos").show();
-      } else if (sideA != sideB =! sideC) {
-        $(".scale").show();
-      }
-    } else {
+    if (notTriangle(sideA, sideB, sideC) === true) {
       $(".not-triangle").show();
+    } else if (equilateralTriangle(sideA, sideB, sideC) === true) {
+      $("equal").show();
+    } else if (isoscelesTriangle(sideA, sideB, sideC) === true) {
+      $("isos").show();
+    } else {
+      $("scale").show();
     }
-
 
 
 
